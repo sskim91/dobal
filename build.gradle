@@ -1,0 +1,46 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.11.BUILD-SNAPSHOT'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+group = 'com.sskim'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	//compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	//compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	//runtime('mysql:mysql-connector-java')
+	compileOnly('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-starter-tomcat')
+	compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test')
+}
